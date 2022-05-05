@@ -8,6 +8,7 @@ export const FormLogin = () => {
   const [iconClassPass, setIconClassPass] = useState();
   const [inputValidEmail, setInputValidEmail] = useState();
   const [inputValidPass, setInputValidPass] = useState();
+  const [btnEyes, setBtnEyes] = useState();
   const email = document.getElementById("email");
   const icon = document.getElementById("envelope");
   const pass = document.getElementById("password");
