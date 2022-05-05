@@ -7,7 +7,7 @@ const LandingPage = () => {
   return (
     <div className='border-auth'>
         <BorderKiri></BorderKiri>
-        <BorderKanan></BorderKanan>
+        <BorderKanan linking=" SignUp"></BorderKanan>
     </div>
   )
 }

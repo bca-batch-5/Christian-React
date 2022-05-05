@@ -1,0 +1,15 @@
+.icon-gray{
+   color: #A9A9A999;
+}
+.icon-blue{
+    color: #6379F4;
+}
+.input-empty{
+    border-bottom-color:#A9A9A999;
+    outline: none;
+}
+.input-valid{
+    border-bottom:1px #6379F4 solid !important;
+    outline: none;
+    color: red;
+}

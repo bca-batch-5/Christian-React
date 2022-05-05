@@ -28,3 +28,18 @@ export const LeftSubText = styled.div`
   text-align: center;
   color: white;
 `;
+
+export const BoxKanan = styled.div`
+  width: 670px;
+  background-color: #fafcff;
+`;
+
+export const BoxKananDalam = styled.div`
+  margin-left: 30px;
+  margin-top: 50px;
+`;
+
+export const BorderJudul = styled.div`
+  width: 64%;
+  color: #3a3d42;
+`;
