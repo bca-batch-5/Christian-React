@@ -57,3 +57,6 @@
 .signup:hover{
   color: rgb(4, 4, 176);
 }
+.form-valid{
+  display: none;
+}

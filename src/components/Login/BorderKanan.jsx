@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
   BorderJudul,
   BoxKanan,
@@ -6,10 +6,19 @@ import {
 } from "../../styles/Login/StyleLogin";
 import { FormLogin } from "../FormAuth/FormLogin";
 import "../../styles/Form/FormLogin.css";
+import { Link } from "react-router-dom";
 
 const BorderKanan = (props) => {
-  const { linking } = props;
-  
+  const { linking, linkPage} = props;
+  const [formValidation, setFormValidation] = useState(true);
+  console.log(linkPage);
+
+  useEffect(() => {
+    if(linkPage == "/"){
+      setFormValidation(false);
+    }
+  }, []);
+
   return (
     <BoxKanan>
       <BoxKananDalam>
@@ -27,14 +36,14 @@ const BorderKanan = (props) => {
         </BorderJudul>
         <div>
           <div className="form-box">
-            <FormLogin />
+            <FormLogin formValid={formValidation}/>
             <br />
             <br />
             <p className="form-subtext">
               Don't have an account? Lets
-              <a className="signup" href="./signUp.html">
+              <Link className="signup" to={linkPage}>
                 {linking}
-              </a>
+              </Link>
             </p>
           </div>
         </div>

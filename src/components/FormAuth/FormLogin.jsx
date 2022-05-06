@@ -1,14 +1,17 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "../../styles/Form/FormLogin.css";
 import { BorderInput } from "./FormLoginStyle";
 import "../../styles/Form/ManipulationFormLogin.css";
 
-export const FormLogin = () => {
+export const FormLogin = (props) => {
+  const{formValid} = props;
+  const[formDisplay, setFromDisplay] = useState();
   const [iconClassEmail, setIconClassEmail] = useState();
   const [iconClassPass, setIconClassPass] = useState();
   const [inputValidEmail, setInputValidEmail] = useState();
   const [inputValidPass, setInputValidPass] = useState();
   const [btnEyes, setBtnEyes] = useState();
+  const [passType, setPassType] = useState("password");
   const email = document.getElementById("email");
   const icon = document.getElementById("envelope");
   const pass = document.getElementById("password");
@@ -17,6 +20,13 @@ export const FormLogin = () => {
   const alertId = document.getElementById("alert");
   const btnLogin = document.getElementById("btnLogin");
   const aHref = document.getElementById("aHref");
+
+  useEffect(() => {
+    console.log(formValid);
+    if(formValid == false){
+      setFromDisplay("form-valid");
+    }
+  });
 
   function inputHandlerEmail(e) {
     if (e.target.value === "") {
@@ -30,27 +40,27 @@ export const FormLogin = () => {
   }
 
   function inputHandlerPass(e) {
-    
     if (e.target.value == "") {
       setIconClassPass("icon-gray");
       setInputValidPass("input-empty");
-      btnEye.style.color = `#A9A9A999`;
+      setBtnEyes("btn-eyes-gray");
     } else {
       setIconClassPass("icon-blue");
       setInputValidPass("input-valid");
-      btnEye.style.color = `#6379F4`;
+      setBtnEyes("btn-eyes-blue");
     }
     btnChange();
   }
 
-  function buttonEyes() {
-    if (pass.type == "password") {
-      pass.type = "text";
+  function buttonEyes(e) {
+
+    if (passType == "password") {
+      setPassType("text");
     } else {
-      pass.type = "password";
+      setPassType("password");
     }
     const iconBtn = document.getElementById(`iconBtn`);
-    if (iconBtn.classList.contains(`fa-eye-slash`)) {
+    if (e.target.classList.contains(`fa-eye-slash`)) {
       iconBtn.classList.add(`fa-eye`);
       iconBtn.classList.remove(`fa-eye-slash`);
     } else {
@@ -75,11 +85,6 @@ export const FormLogin = () => {
     }
   }
 
-  // bagian disabled button
-
-  // pass.addEventListener(`input`, btnChange);
-  // email.addEventListener(`input`, btnChange);
-
   function btnChange() {
     if (pass.value == "" || email.value == "") {
       btnLogin.style.backgroundColor = "#A9A9A999";
@@ -90,8 +95,9 @@ export const FormLogin = () => {
       btnLogin.style.color = `white`;
     }
   }
+  
   return (
-    <div>
+    <div className={formDisplay}>
       <form>
         <BorderInput className={inputValidEmail}>
           <i id="envelope" className={`fa fa-envelope ${iconClassEmail}`}></i>
@@ -111,7 +117,7 @@ export const FormLogin = () => {
           <input
             className="form"
             id="password"
-            type="password"
+            type={passType}
             placeholder="enter your password"
             onInput={inputHandlerPass}
           />
@@ -119,9 +125,9 @@ export const FormLogin = () => {
             type="button"
             id="btnEye"
             className="buttonEye"
-            onClick={buttonEyes}
+           
           >
-            <i id="iconBtn" className="fa fa-eye-slash"></i>
+            <i id="iconBtn" className={`fa fa-eye-slash ${btnEyes}`}  onClick={buttonEyes}></i>
           </button>
         </BorderInput>
         <br />
