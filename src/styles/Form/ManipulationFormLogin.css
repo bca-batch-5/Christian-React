@@ -4,6 +4,14 @@
 .icon-blue{
     color: #6379F4;
 }
+.icon-red{
+    color: red;
+}
+.input-failed{
+    border-bottom:1px red solid !important;
+    outline: none;
+    color: red;
+} 
 .input-empty{
     border-bottom-color:#A9A9A999;
     outline: none;
@@ -11,11 +19,18 @@
 .input-valid{
     border-bottom:1px #6379F4 solid !important;
     outline: none;
-    color: red;
 }
-.btn-eyes-gray{
-    color: #A9A9A999;
+.wrong-pass-display{
+    display: block ;
 }
-.btn-eyes-blue{
-    color: #6379F4;
+.wrong-pass-no-display{
+    display: none !important;
+}
+.btn-login-no-valid{
+    background-color: #A9A9A999;
+    color: gray;
+}
+.btn-login-valid{
+    background-color:#6379F4;
+    color: white;
 }

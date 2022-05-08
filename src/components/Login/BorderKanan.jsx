@@ -5,41 +5,51 @@ import {
   BoxKananDalam,
 } from "../../styles/Login/StyleLogin";
 import { FormLogin } from "../FormAuth/FormLogin";
+import { FormSignUp } from "../FormAuth/FormSignUp";
 import "../../styles/Form/FormLogin.css";
 import { Link } from "react-router-dom";
 
 const BorderKanan = (props) => {
-  const { linking, linkPage} = props;
-  const [formValidation, setFormValidation] = useState(true);
+  const { linking, linkPage, judul,subJudul, page} = props;
+  const [formValidation, setFormValidation] = useState();
+  const [currentPage, setCurrentPage] = useState();
+  const [linkDisplay, setLinkDisplay] = useState();
   console.log(linkPage);
 
   useEffect(() => {
-    if(linkPage == "/"){
+    // page berada di signUp
+    if (linkPage == "/") {
       setFormValidation(false);
+    } else if (linkPage == "/signup") {
+      // page berada di login
+      setFormValidation(true);
+    } 
+    setCurrentPage(page);
+    // menghilangkan pilihan untuk login atau signup
+    if(currentPage == "create-pin"){
+      setLinkDisplay("form-valid");
     }
-  }, []);
+  });
 
   return (
     <BoxKanan>
       <BoxKananDalam>
         <BorderJudul>
           <h2>
-            Start Accessing Banking Needs With All Devices and All Platforms
-            With 30.000+ Users
+           {judul}
           </h2>
           <br />
           <p>
-            Transfering money is eassier than ever, you can access Pay Pay
-            wherever you are. Desktop, laptop, mobile phone? we cover all of
-            that for you!
+            {subJudul}
           </p>
         </BorderJudul>
         <div>
           <div className="form-box">
-            <FormLogin formValid={formValidation}/>
+            <FormLogin formValid={formValidation} pageValid={currentPage}/>
+            <FormSignUp formValid={formValidation} pageValid={currentPage}/>
             <br />
             <br />
-            <p className="form-subtext">
+            <p className={`form-subtext ${linkDisplay}`}>
               Don't have an account? Lets
               <Link className="signup" to={linkPage}>
                 {linking}

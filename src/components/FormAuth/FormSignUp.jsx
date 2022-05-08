@@ -2,10 +2,10 @@ import React, { useEffect, useState } from "react";
 import "../../styles/Form/FormLogin.css";
 import { BorderInput } from "./FormLoginStyle";
 import "../../styles/Form/ManipulationFormLogin.css";
+import { Link } from "react-router-dom";
 
-export const FormLogin = (props) => {
-  const { formValid , pageValid} = props;
-  const [emailValue, setEmailValue] = useState();
+export const FormSignUp = (props) => {
+  const { formValid, pageValid } = props;
   const [formDisplay, setFromDisplay] = useState();
   const [iconClassEmail, setIconClassEmail] = useState();
   const [iconClassPass, setIconClassPass] = useState();
@@ -14,18 +14,33 @@ export const FormLogin = (props) => {
   const [btnEyes, setBtnEyes] = useState();
   const [passType, setPassType] = useState("password");
   const [iconEyes, setIconEyes] = useState("fa-eye-slash");
+  const [iconUsername, setIconUsername] = useState();
+  const [inputValidUser, setInputValidUser] = useState();
+  const [emailValue, setEmailValue] = useState();
   const [alertMessage, setAlertMessage] = useState();
   const [buttonLogin, setButtonLogin] = useState();
   const [linkClick, setLinkClick] = useState("#");
 
   useEffect(() => {
-    if (formValid == false) {
+    console.log(formValid);
+    if (formValid == true) {
       setFromDisplay("form-valid");
     }
     if(pageValid == "create-pin"){
       setFromDisplay("form-valid");
     }
   });
+
+  function inputHandlerUserName(e) {
+    if (e.target.value === "") {
+      setIconUsername("icon-gray");
+      setInputValidUser("input-empty");
+    } else {
+      setIconUsername("icon-blue");
+      setInputValidUser("input-valid");
+    }
+    btnChange(e);
+  }
 
   function inputHandlerEmail(e) {
     if (e.target.value === "") {
@@ -68,21 +83,16 @@ export const FormLogin = (props) => {
   function validationEmail(e) {
     let format = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
     if (emailValue.match(format)) {
-      e.preventDefault();
-      setLinkClick("#");
+      setLinkClick("/create-pin");
     } else {
       e.preventDefault();
       setIconClassEmail("icon-red");
       setInputValidEmail("input-failed");
-      setIconClassPass("icon-red");
-      setInputValidPass("input-failed");
-      setBtnEyes("icon-red");
       setAlertMessage("wrong-pass-display");
     }
   }
 
   function btnChange(e) {
-    console.log("ini pass value" + e.target.value);
     if (e.target.value === "") {
       setButtonLogin("btn-login-no-valid");
       setAlertMessage("wrong-pass-no-display");
@@ -90,10 +100,22 @@ export const FormLogin = (props) => {
       setButtonLogin("btn-login-valid");
     }
   }
-
   return (
     <div className={formDisplay}>
       <form>
+        <BorderInput className={inputValidUser}>
+          <i id="user" class={`fa fa-user ${iconUsername}`}></i>
+          <input
+            className={`form`}
+            id="username"
+            type="text"
+            placeholder="enter your username"
+            onChange={inputHandlerUserName}
+          />
+        </BorderInput>
+        <br />
+        <br />
+        <br />
         <BorderInput className={inputValidEmail}>
           <i id="envelope" className={`fa fa-envelope ${iconClassEmail}`}></i>
           <input
@@ -132,14 +154,13 @@ export const FormLogin = (props) => {
         <br />
         <br />
         <p id="alert" className={`WrongPassword ${alertMessage}`}>
-          Email or Password Invalid
+          Email Invalid
         </p>
-        {/* ini harusnya pake Link React Router */}
-        <a id="aHref" href={linkClick}>
+       <Link to={linkClick}>
           <button id="btnLogin" className={`btn-Login ${buttonLogin}`} onClick={validationEmail}>
-            Login
+            Sign Up
           </button>
-        </a>
+        </Link>
       </form>
     </div>
   );
