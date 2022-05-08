@@ -1,17 +1,19 @@
 import React, { useEffect, useState } from "react";
 import "../../styles/Form/ManipulationForm.css";
 import "../../styles/Form/CreatePin.css";
+import { Link } from "react-router-dom";
 
 const FormCreatePin = (props) => {
   const { pageValid, logoSuccess } = props;
   const [formDisplay, setFormDisplay] = useState("form-no-display");
+  const [formHide, setFormHide] = useState();
   const [logoSuccessValid, setLogoSuccessValid] = useState();
   const [judul, setJudul] = useState("Your PIN Was Successfully Created");
   const [subJudul, setSubJudul] = useState(
     "Your PIN was successfully created and you can now access all the features in PayPay. Login to your new account and start exploring!"
   );
-  const titleOne = document.getElementById(`titleOne`);
-  const titleTwo = document.getElementById(`titleTwo`);
+  const [btnLogin, setBtnLogin] = useState();
+  const [btnConfirm, setBtnConfirm] = useState();
   const formBox = document.getElementById(`formBox`);
   const loginBtn = document.getElementById(`loginBtn`);
   const confirmBtn = document.getElementById(`btnConfirm`);
@@ -30,22 +32,22 @@ const FormCreatePin = (props) => {
     // loginBtn.style.display = `block`;
     setLogoSuccessValid("logo-success-valid");
     logoSuccess(logoSuccessValid, judul, subJudul);
+    setFormHide("form-no-display");
+    setBtnLogin("form-display");
   }
 
   // disable button\
 
-  function sixInputHandler() {
-    btnChange();
+  function sixInputHandler(e) {
+    btnChange(e.target.value);
   }
 
-  function btnChange() {
-    // if (six.value == "") {
-    //   confirmBtn.style.backgroundColor = "#A9A9A999";
-    //   confirmBtn.style.color = "grey";
-    // } else {
-    confirmBtn.style.backgroundColor = `#6379F4`;
-    confirmBtn.style.color = `white`;
-    // }
+  function btnChange(e) {
+    if (e == "") {
+      setBtnConfirm("btn-login-no-valid");
+    } else {
+      setBtnConfirm("btn-login-valid");
+    }
   }
 
   function moveEvent(e) {
@@ -66,7 +68,7 @@ const FormCreatePin = (props) => {
 
   return (
     <div className={formDisplay}>
-      <div id="formBox">
+      <div id="formBox" className={formHide}>
         <form onSubmit={confirmButton}>
           <div className="pin-form">
             <input
@@ -118,9 +120,12 @@ const FormCreatePin = (props) => {
               onkeypress=" return/[0-9]/i.test(event.key)"
             />
           </div>
-          <button className="btnConfirm">Confirm</button>
+          <button className={`btn-confirm ${btnConfirm}`}>Confirm</button>
         </form>
       </div>
+      <Link to="/">
+        <button className={`btn-login ${btnLogin}`}>Login</button>
+      </Link>
     </div>
   );
 };

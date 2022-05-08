@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import "../../styles/Form/FormLogin.css";
 import { BorderInput } from "./FormLoginStyle";
 import "../../styles/Form/ManipulationForm.css";
+import { Link } from "react-router-dom";
 
 export const FormLogin = (props) => {
   const { formValid , pageValid} = props;
@@ -22,7 +23,7 @@ export const FormLogin = (props) => {
     if (formValid == false) {
       setFromDisplay("form-valid");
     }
-    if(pageValid == "create-pin"){
+    if(pageValid == "create-pin" || pageValid == "forget-pass"){
       setFromDisplay("form-valid");
     }
   });
@@ -126,9 +127,9 @@ export const FormLogin = (props) => {
         </BorderInput>
         <br />
         <br />
-        <a className="forgot-pass" href="#">
+        <Link className="forgot-pass" to="/forget-password">
           Forgot password?
-        </a>
+        </Link>
         <br />
         <br />
         <p id="alert" className={`WrongPassword ${alertMessage}`}>

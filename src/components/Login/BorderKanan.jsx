@@ -10,6 +10,7 @@ import FormCreatePin from "../FormAuth/FormCreatePin";
 import "../../styles/Form/FormLogin.css";
 import { Link } from "react-router-dom";
 import SuccessImage from "../../Assets/success.png";
+import FormForgetPass from "../FormAuth/FormForgetPass";
 
 
 const BorderKanan = (props) => {
@@ -31,7 +32,7 @@ const BorderKanan = (props) => {
     }
     setCurrentPage(page);
     // menghilangkan pilihan untuk login atau signup
-    if (currentPage == "create-pin") {
+    if (currentPage == "create-pin" || currentPage == "forget-pass") {
       setLinkDisplay("form-valid");
     }
   });
@@ -59,6 +60,7 @@ const BorderKanan = (props) => {
             <FormLogin formValid={formValidation} pageValid={currentPage} />
             <FormSignUp formValid={formValidation} pageValid={currentPage} />
             <FormCreatePin pageValid={currentPage} logoSuccess={successHandler}></FormCreatePin>
+            <FormForgetPass pageValid={currentPage}></FormForgetPass>
             <br />
             <br />
             <p className={`form-subtext ${linkDisplay}`}>

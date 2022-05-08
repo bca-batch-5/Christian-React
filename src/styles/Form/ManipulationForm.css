@@ -31,11 +31,11 @@
     color: gray;
 }
 .btn-login-valid{
-    background-color:#6379F4;
+    background-color:#6379F4 !important;
     color: white;
 }
 .form-display{
-    display: block;
+    display: block !important;
 }
 .form-no-display{
     display: none;

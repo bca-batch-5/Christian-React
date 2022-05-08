@@ -25,7 +25,7 @@ export const FormSignUp = (props) => {
     if (formValid == true) {
       setFromDisplay("form-valid");
     }
-    if(pageValid == "create-pin"){
+    if(pageValid == "create-pin" || pageValid == "forget-pass"){
       setFromDisplay("form-valid");
     }
   });

@@ -13,11 +13,22 @@
     outline: none;
     font-weight: 700;
 }
-.btnConfirm{
+.btn-confirm{
     width: 350px;
     height: 40px;
     border: none;
     background-color: #A9A9A999;
     border-radius: 10px;
     margin-top: 40px;
+}
+
+.btn-login{
+    width: 350px;
+    height: 40px;
+    border: none;
+    color: white;
+    background-color: #6379F4;
+    border-radius: 10px;
+    margin-top: 40px;
+    display: none;
 }
