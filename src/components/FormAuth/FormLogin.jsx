@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "../../styles/Form/FormLogin.css";
 import { BorderInput } from "./FormLoginStyle";
-import "../../styles/Form/ManipulationFormLogin.css";
+import "../../styles/Form/ManipulationForm.css";
 
 export const FormLogin = (props) => {
   const { formValid , pageValid} = props;

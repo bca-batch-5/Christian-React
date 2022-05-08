@@ -6,15 +6,20 @@ import {
 } from "../../styles/Login/StyleLogin";
 import { FormLogin } from "../FormAuth/FormLogin";
 import { FormSignUp } from "../FormAuth/FormSignUp";
+import FormCreatePin from "../FormAuth/FormCreatePin";
 import "../../styles/Form/FormLogin.css";
 import { Link } from "react-router-dom";
+import SuccessImage from "../../Assets/success.png";
+
 
 const BorderKanan = (props) => {
-  const { linking, linkPage, judul,subJudul, page} = props;
+  const { linking, linkPage, judul, subJudul, page } = props;
   const [formValidation, setFormValidation] = useState();
   const [currentPage, setCurrentPage] = useState();
   const [linkDisplay, setLinkDisplay] = useState();
-  console.log(linkPage);
+  const [judulBorder, setJudulBorder] = useState(judul);
+  const [subJudulBorder, setSubJudulBorder] = useState(subJudul);
+  const [successDisplay, setSuccessDisplay] = useState("logo-sucess-no-valid");
 
   useEffect(() => {
     // page berada di signUp
@@ -23,30 +28,37 @@ const BorderKanan = (props) => {
     } else if (linkPage == "/signup") {
       // page berada di login
       setFormValidation(true);
-    } 
+    }
     setCurrentPage(page);
     // menghilangkan pilihan untuk login atau signup
-    if(currentPage == "create-pin"){
+    if (currentPage == "create-pin") {
       setLinkDisplay("form-valid");
     }
   });
 
+  function successHandler(display, title, subTitle){
+    setSuccessDisplay(display);
+    setJudulBorder(title);
+    setSubJudulBorder(subTitle);
+    console.log(judulBorder);
+  }
+    
   return (
     <BoxKanan>
       <BoxKananDalam>
         <BorderJudul>
-          <h2>
-           {judul}
-          </h2>
+          <div id="titleImage" className={successDisplay}>
+            <img src={SuccessImage} alt="success" />
+          </div>
+          <h2>{judulBorder}</h2>
           <br />
-          <p>
-            {subJudul}
-          </p>
+          <p>{subJudulBorder}</p>
         </BorderJudul>
         <div>
           <div className="form-box">
-            <FormLogin formValid={formValidation} pageValid={currentPage}/>
-            <FormSignUp formValid={formValidation} pageValid={currentPage}/>
+            <FormLogin formValid={formValidation} pageValid={currentPage} />
+            <FormSignUp formValid={formValidation} pageValid={currentPage} />
+            <FormCreatePin pageValid={currentPage} logoSuccess={successHandler}></FormCreatePin>
             <br />
             <br />
             <p className={`form-subtext ${linkDisplay}`}>

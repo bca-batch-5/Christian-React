@@ -34,3 +34,9 @@
     background-color:#6379F4;
     color: white;
 }
+.form-display{
+    display: block;
+}
+.form-no-display{
+    display: none;
+}

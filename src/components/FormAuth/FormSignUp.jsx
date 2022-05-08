@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "../../styles/Form/FormLogin.css";
 import { BorderInput } from "./FormLoginStyle";
-import "../../styles/Form/ManipulationFormLogin.css";
+import "../../styles/Form/ManipulationForm.css";
 import { Link } from "react-router-dom";
 
 export const FormSignUp = (props) => {
@@ -22,7 +22,6 @@ export const FormSignUp = (props) => {
   const [linkClick, setLinkClick] = useState("#");
 
   useEffect(() => {
-    console.log(formValid);
     if (formValid == true) {
       setFromDisplay("form-valid");
     }
@@ -146,11 +145,6 @@ export const FormSignUp = (props) => {
             ></i>
           </button>
         </BorderInput>
-        <br />
-        <br />
-        <a className="forgot-pass" href="#">
-          Forgot password?
-        </a>
         <br />
         <br />
         <p id="alert" className={`WrongPassword ${alertMessage}`}>

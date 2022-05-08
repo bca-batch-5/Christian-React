@@ -1,0 +1,23 @@
+.pin-form{
+    display: flex;
+    justify-content: space-evenly;
+    
+}
+.form-pin{
+    margin: 0;
+    width: 30px;
+    height: 30px;
+    text-align: center;
+    border-radius: 10px;
+    border: 1px solid black;
+    outline: none;
+    font-weight: 700;
+}
+.btnConfirm{
+    width: 350px;
+    height: 40px;
+    border: none;
+    background-color: #A9A9A999;
+    border-radius: 10px;
+    margin-top: 40px;
+}

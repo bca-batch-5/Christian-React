@@ -60,3 +60,9 @@
 .form-valid{
   display: none;
 }
+.logo-success-valid{
+  display: block;
+}
+.logo-sucess-no-valid{
+  display: none;
+}
